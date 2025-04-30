@@ -8,12 +8,12 @@ jobs:
   update-values:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Infra repo
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Update dev-values.yaml
         run: |
-          sed -i "s|tag: .*|tag: ${{ github.event.client_payload.tag }}|" helm/dev-values.yaml
+          sed -i "s|tag: .*|tag: ${{ github.event.client_payload.tag }}|" dev-values.yaml
 
       - name: Commit and push
         run: |
