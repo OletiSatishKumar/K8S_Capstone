@@ -1,4 +1,4 @@
-name: Update Values.yaml with New Image Tag
+name: Update Image Tag in dev-values.yaml
 
 on:
   repository_dispatch:
@@ -9,23 +9,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Infra Repo
-      uses: actions/checkout@v3
-      with:
-        ref: master  # Or the branch where your Helm chart is located
+      - name: Checkout Infra Repository
+        uses: actions/checkout@v3
+        with:
+          repository: OletiSatishKumar/K8S_Capstone
+          token: ${{ secrets.GH_TOKEN }}
+          ref: master
 
-    - name: Update image tag in dev-values.yaml
-      run: |
-        TAG=${{ github.event.client_payload.tag }}
-        echo "Updating image tag to $TAG"
+      - name: Update image tag in dev-values.yaml
+        run: |
+          TAG="${{ github.event.client_payload.tag }}"
+          echo "Updating image tag to: $TAG"
+          sed -i "s|^\(\s*tag:\s*\).*|\1\"$TAG\"|" helm/flowershop/dev-values.yaml
 
-        # Update the dev-values.yaml with the new tag
-        sed -i "s/tag: .*/tag: $TAG/" helm/flowershop/dev-values.yaml
-
-    - name: Commit and push changes
-      run: |
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "actions@github.com"
-        git add helm/flowershop/dev-values.yaml
-        git commit -m "Update image tag to $TAG"
-        git push origin main  # Or the branch you're working on
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add helm/flowershop/dev-values.yaml
+          git commit -m "Update image tag to $TAG"
+          git push origin master  # ✅ Corrected branch
