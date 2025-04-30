@@ -1,0 +1,5 @@
+replicas: 2
+
+image:
+  repository: satishosk/floweshop
+  tag: latest  # 🔄 This will be replaced by GitHub Actions later
