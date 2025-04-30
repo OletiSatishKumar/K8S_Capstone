@@ -29,8 +29,8 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/nodeapp:${{ steps.tag.outputs.tag }} .
-        docker push ${{ secrets.DOCKER_USERNAME }}/nodeapp:${{ steps.tag.outputs.tag }}
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/floweshop:${{ steps.tag.outputs.tag }} .
+        docker push ${{ secrets.DOCKER_USERNAME }}/floweshop:${{ steps.tag.outputs.tag }}
 
     - name: Trigger Infra Repo to update values.yaml
       run: |
