@@ -2,4 +2,4 @@ replicas: 2
 
 image:
   repository: satishosk/floweshop
-  tag: "20250430102918-179855a"
+  tag: "20250430102953-659b225"
