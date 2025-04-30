@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-and-deploy:
-    if: github.actor != 'OletiSatishKumar'
+    if: github.actor != 'action-user'
     runs-on: ubuntu-latest
 
     steps:
