@@ -1,0 +1,22 @@
+name: Update Helm Chart with New Image Tag
+
+on:
+  repository_dispatch:
+    types: [update_infra]
+
+jobs:
+  update-image:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Infra Repo
+      uses: actions/checkout@v3
+
+    - name: Update dev-values.yaml with new image tag
+      run: |
+        TAG=${{ github.event.client_payload.tag }}
+        sed -i "s/tag: .*/tag: $TAG/" helm/flowershop/dev-values.yaml
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@github.com"
+        git commit -am "Update image tag to $TAG"
+        git push
