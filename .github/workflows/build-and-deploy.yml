@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-and-deploy:
-    if: github.actor != 'github-actions[bot]'
+    if: github.actor != 'blocked-username'  # ❌ Block specific user (e.g., GitHub Actions bot or a test user)
     runs-on: ubuntu-latest
 
     steps:
