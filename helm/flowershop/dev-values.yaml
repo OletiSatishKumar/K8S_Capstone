@@ -2,4 +2,4 @@ replicas: 2
 
 image:
   repository: satishosk/floweshop
-  tag: latest  # 🔄 This will be replaced by GitHub Actions later
+  tag: "20250430040726-0558478"
